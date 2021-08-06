@@ -14,4 +14,5 @@ class DataGenerator:
 if __name__ == "__main__":
     data_generator = DataGenerator()
     data = data_generator.generate_data()
+    print(data)
     
