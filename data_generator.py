@@ -11,28 +11,28 @@ class DataGenerator:
         self.data = []
         self.faker = Faker()
 
-    def return_name(self) -> str:
+    def __return_name(self) -> str:
         return self.faker.name()
 
     @staticmethod
-    def return_id() -> int:
+    def __return_id() -> int:
         temp_id = [str(random.randint(1, 9))]
         for i in range(1, 5):
             temp_id.append(str(random.randint(0, 9)))
         return int("".join(temp_id))
 
     @staticmethod
-    def return_phone_number() -> int:
+    def __return_phone_number() -> int:
         temp_number = [str(random.randint(6, 9))]
         for i in range(1, 10):
             temp_number.append(str(random.randint(0, 9)))
         return int("".join(temp_number))
 
-    def return_address(self) -> str:
+    def __return_address(self) -> str:
         return self.faker.address()
 
     @staticmethod
-    def return_pin() -> str:
+    def __return_pin() -> str:
         dirty_pin = random.randint(0, 1)
         temp_pin = [str(random.randint(1, 9))]
         for i in range(1, 7):
@@ -42,7 +42,7 @@ class DataGenerator:
         return "".join(temp_pin)
 
     @staticmethod
-    def return_email(name: str, id: int) -> str:
+    def __return_email(name: str, id: int) -> str:
         domain = ["gmail", "hotmail", "outlook"]
         name = name.replace(" ", "").lower()
         rnd_dmn = random.randint(0, len(domain)-1)
@@ -50,7 +50,7 @@ class DataGenerator:
         return email
 
     @staticmethod
-    def return_dob() -> str:
+    def __return_dob() -> str:
         start_date = datetime.date(1986, 1, 1)
         end_date = datetime.date(2000, 2, 1)
         time_between_dates = end_date - start_date
@@ -60,7 +60,7 @@ class DataGenerator:
 
         return str(random_date)
 
-    def save_data_to_file(self, filename):
+    def __save_data_to_file(self, filename):
         keys = self.data[0].keys()
         with open(filename, 'w', newline='') as output_file:
             dict_writer = csv.DictWriter(output_file, keys)
@@ -68,27 +68,38 @@ class DataGenerator:
             dict_writer.writerows(self.data)
 
     def generate_data(self, filename="project_data.csv"):
-        for i in range(0, self.number_data):
-            dictionary_data = {'Name': self.return_name(),
-                               'Id': self.return_id(),
-                               'Phone Number': self.return_phone_number(),
-                               'Address': self.return_address(),
-                               'Pin Code': self.return_pin(),
-                               'Email': None,
-                               'Date of Birth': self.return_dob()
-                               }
+        """
+        Generates Random Data for Given Amount and Writes to file
+        Args:
+             filename(str) ---> File to save data to.
 
-            dictionary_data["Email"] = self.return_email(dictionary_data["Name"],
-                                                         dictionary_data["Id"])
+        Raises:
+            Exception:
+                Any issue with data creation or saving to file.
+        """
+        try:
+            for i in range(0, self.number_data):
+                dictionary_data = {'Name': self.__return_name(),
+                                   'Id': self.__return_id(),
+                                   'Phone Number': self.__return_phone_number(),
+                                   'Address': self.__return_address(),
+                                   'Pin Code': self.__return_pin(),
+                                   'Email': None,
+                                   'Date of Birth': self.__return_dob()
+                                   }
 
-            self.data.append(dictionary_data)
+                dictionary_data["Email"] = self.__return_email(dictionary_data["Name"],
+                                                               dictionary_data["Id"])
 
-        self.save_data_to_file(filename)
+                self.data.append(dictionary_data)
+
+            self.__save_data_to_file(filename)
+
+        except Exception as exp:
+            raise Exception(exp)
 
 
 if __name__ == "__main__":
     data_generator = DataGenerator()
-    try:
-        data_generator.generate_data()
-    except Exception as exp:
-        raise Exception(exp)
+    data_generator.generate_data()
+
