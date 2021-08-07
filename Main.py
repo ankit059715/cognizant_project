@@ -5,7 +5,8 @@ import os
 
 class Main:
     def __init__(self):
-        self.filename = None
+        self.filepath = None
+        self.hdfs_path = None
 
     def generate_data_to_file(self, filename="project_data.csv"):
         """
@@ -14,20 +15,24 @@ class Main:
              filename(str) ---> File to save data to.
                 - default: project_data.csv
         """
-        self.filename = filename
+        self.filepath = os.path.join(os.getcwd(), filename)
         data_generator = DataGenerator()
-        data_generator.generate_data(filename=self.filename)
+        data_generator.generate_data(filename=filename)
 
     def upload_file_hadoop(self):
         """
         Uploads file to hadoop file system
         Raises:
             Exception:
-                If any issue when uploading file
+                If any issue when uploading file or creating directory
         """
-        hdfs_path = os.path.join(os.sep, 'user', 'cloudera', self.filename)
+        self.hdfs_path = os.path.join(os.sep, 'user', 'cloudera', 'project_file')
+        print("Hdoop path: ", self.hdfs_path)
+        print("File path: ", self.filepath)
         try:
-            put = Popen(["hadoop", "fs", "-put", self.filename, hdfs_path], stdin=PIPE, bufsize=-1)
+            put = Popen(["hadoop", "fs", "-mkdir", self.hdfs_path], stdin=PIPE, bufsize=-1)
+            put.communicate()
+            put = Popen(["hadoop", "fs", "-put", self.filepath, self.hdfs_path], stdin=PIPE, bufsize=-1)
             put.communicate()
         except Exception as exp:
             raise Exception(exp)
