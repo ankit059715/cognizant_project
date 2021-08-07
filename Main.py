@@ -27,7 +27,7 @@ class Main:
                 If any issue when uploading file or creating directory
         """
         self.hdfs_path = os.path.join(os.sep, 'user', 'cloudera', 'project_file')
-        print("Hdoop path: ", self.hdfs_path)
+        print("Hadoop path: ", self.hdfs_path)
         print("File path: ", self.filepath)
         try:
             put = Popen(["hadoop", "fs", "-mkdir", self.hdfs_path], stdin=PIPE, bufsize=-1)
