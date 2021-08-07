@@ -15,8 +15,7 @@ class DataGenerator:
         """
         Generate random names
         Returns:
-               Random names
-            
+               str -> Random names
         """
         return self.faker.name()
 
@@ -25,7 +24,7 @@ class DataGenerator:
         """
          Generate random Id 
          Returns:
-                4 digit random Id
+                int -> four digit random Id
         """
         temp_id = [str(random.randint(1, 9))]
         for i in range(1, 5):
@@ -37,7 +36,7 @@ class DataGenerator:
         """
          Generate random Phone numbers 
          Returns:
-                10 digit random phone number
+                int -> ten digit random phone number
         """
         temp_number = [str(random.randint(6, 9))]
         for i in range(1, 10):
@@ -48,16 +47,16 @@ class DataGenerator:
         """
          Generate random address
          Returns:
-                Random address
+                str -> random address
         """
         return self.faker.address()
 
     @staticmethod
     def __return_pin() -> str:
         """
-         Generate random Pincode
+         Generate random pincode
          Returns:
-                7 digit random pincode
+                str -> seven digit random pincode
         """
         dirty_pin = random.randint(0, 1)
         temp_pin = [str(random.randint(1, 9))]
@@ -72,10 +71,10 @@ class DataGenerator:
         """
          Generate random email_id by appending name,id and domain together
          Args:
-             name(str)
-             id(int)
+             name(str) ---> Name of the user
+             id(int)   ---> Id of the user
          Returns:
-                Random email_id
+                str -> random email id
         """
         domain = ["gmail", "hotmail", "outlook"]
         name = name.replace(" ", "").lower()
@@ -88,7 +87,7 @@ class DataGenerator:
         """
          Generate random Date of Birth
          Returns:
-                Random date of birth
+                str -> random date of birth
         """
         start_date = datetime.date(1986, 1, 1)
         end_date = datetime.date(2000, 2, 1)
@@ -103,7 +102,7 @@ class DataGenerator:
         """
          Saving data to file 
          Args:
-             filename(str)------>to perform write operation to file
+             filename(str) ---> To perform write operation to file
         """
         keys = self.data[0].keys()
         with open(filename, 'w', newline='') as output_file:
@@ -111,7 +110,7 @@ class DataGenerator:
             dict_writer.writeheader()
             dict_writer.writerows(self.data)
 
-    def generate_data(self, filename="project_data.csv"):
+    def generate_data(self, filename):
         """
         Generates Random Data for Given Amount and Writes to file
         Args:
@@ -141,9 +140,3 @@ class DataGenerator:
 
         except Exception as exp:
             raise Exception(exp)
-
-
-if __name__ == "__main__":
-    data_generator = DataGenerator()
-    data_generator.generate_data()
-
