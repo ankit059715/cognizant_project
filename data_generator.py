@@ -12,10 +12,21 @@ class DataGenerator:
         self.faker = Faker()
 
     def __return_name(self) -> str:
+        """
+        Generate random names
+        Returns:
+               Random names
+            
+        """
         return self.faker.name()
 
     @staticmethod
     def __return_id() -> int:
+        """
+         Generate random Id 
+         Returns:
+                4 digit random Id
+        """
         temp_id = [str(random.randint(1, 9))]
         for i in range(1, 5):
             temp_id.append(str(random.randint(0, 9)))
@@ -23,16 +34,31 @@ class DataGenerator:
 
     @staticmethod
     def __return_phone_number() -> int:
+        """
+         Generate random Phone numbers 
+         Returns:
+                10 digit random phone number
+        """
         temp_number = [str(random.randint(6, 9))]
         for i in range(1, 10):
             temp_number.append(str(random.randint(0, 9)))
         return int("".join(temp_number))
 
     def __return_address(self) -> str:
+        """
+         Generate random address
+         Returns:
+                Random address
+        """
         return self.faker.address()
 
     @staticmethod
     def __return_pin() -> str:
+        """
+         Generate random Pincode
+         Returns:
+                7 digit random pincode
+        """
         dirty_pin = random.randint(0, 1)
         temp_pin = [str(random.randint(1, 9))]
         for i in range(1, 7):
@@ -43,6 +69,14 @@ class DataGenerator:
 
     @staticmethod
     def __return_email(name: str, id: int) -> str:
+        """
+         Generate random email_id by appending name,id and domain together
+         Args:
+             name(str)
+             id(int)
+         Returns:
+                Random email_id
+        """
         domain = ["gmail", "hotmail", "outlook"]
         name = name.replace(" ", "").lower()
         rnd_dmn = random.randint(0, len(domain)-1)
@@ -51,6 +85,11 @@ class DataGenerator:
 
     @staticmethod
     def __return_dob() -> str:
+        """
+         Generate random Date of Birth
+         Returns:
+                Random date of birth
+        """
         start_date = datetime.date(1986, 1, 1)
         end_date = datetime.date(2000, 2, 1)
         time_between_dates = end_date - start_date
@@ -61,6 +100,11 @@ class DataGenerator:
         return str(random_date)
 
     def __save_data_to_file(self, filename):
+        """
+         Saving data to file 
+         Args:
+             filename(str)------>to perform write operation to file
+        """
         keys = self.data[0].keys()
         with open(filename, 'w', newline='') as output_file:
             dict_writer = csv.DictWriter(output_file, keys)
