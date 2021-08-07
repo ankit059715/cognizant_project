@@ -102,7 +102,7 @@ class DataGenerator:
         """
          Saving data to file 
          Args:
-             filename(str) ---> To perform write operation to file
+             filename(str) ---> Filename with complete path to save data to.
         """
         keys = self.data[0].keys()
         with open(filename, 'w', newline='') as output_file:
@@ -114,7 +114,7 @@ class DataGenerator:
         """
         Generates Random Data for Given Amount and Writes to file
         Args:
-             filename(str) ---> File to save data to.
+             filename(str) ---> File with complete path to save data .
 
         Raises:
             Exception:
