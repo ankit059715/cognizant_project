@@ -1,5 +1,6 @@
 from data_generator import DataGenerator
 from hadoop_operations import HadoopOperations
+from hive_operations import HiveOperations
 import os
 
 
@@ -7,8 +8,13 @@ class Main:
     def __init__(self):
         self.__filepath = None
         self.hdfs_path = None
-        self.hadoop_operations = HadoopOperations()
         self.data_generator = DataGenerator()
+        self.hadoop_operations = HadoopOperations()
+        self.hive_operations = HiveOperations(hostname="localhost",
+                                              port=10000,
+                                              user="admin",
+                                              password="password",
+                                              database="cognizant_db")
 
     def generate_data_to_file(self, filename="project_data.csv"):
         """
@@ -29,10 +35,36 @@ class Main:
 
     def delete_directory(self):
         """
-                Delete directory from hadoop file system
+        Delete directory from hadoop file system
         """
         if self.hadoop_operations.is_directory_exist():
             self.hadoop_operations.delete_directory_hadoop()
+
+    def hive_connection(self):
+        """
+        Connect to hive database
+        """
+        self.hive_operations.connect_hive_db()
+
+    def create_table_with_data(self):
+        """
+        Creates Table and load it with data
+        """
+        self.hive_operations.create_hive_table(table_name="project_table")
+        self.hive_operations.insert_data_to_table_from_file(filepath=self.hdfs_path)
+
+    def save_data(self, data, destination_file):
+        pass
+
+    def get_data_from_hive(self):
+
+        for i in range(0, 26):
+            data = self.hive_operations.get_data_from_hive_with_first_letter(first_letter=chr(ord('a')+i))
+            self.save_data(data = data,
+                           destination_file=chr(ord('a')+i)+".csv")
+
+    def teardown(self):
+        self.hive_operations.close_connections()
 
 
 if __name__ == "__main__":
