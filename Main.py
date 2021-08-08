@@ -51,7 +51,12 @@ class Main:
         Creates Table and load it with data
         """
         print("\nCreate table and add data:\n")
-        # self.hive_operations.create_hive_table()
+        column_names = self.data_generator.get_keys
+        key_type = {}
+        for key in column_names:
+            key_type[key] = self.data_generator.data_type_key(key=key)
+        # print(key_type)
+        self.hive_operations.create_hive_table(table_keys_type=key_type)
         self.hive_operations.insert_data_to_table_from_file(filepath=self.hdfs_path)
 
     @staticmethod
@@ -70,7 +75,7 @@ class Main:
 
 if __name__ == "__main__":
     main = Main()
-    # main.generate_data_to_file()
+    main.generate_data_to_file()
 
     # main.delete_directory()
     # main.upload_file()

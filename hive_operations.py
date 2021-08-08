@@ -63,17 +63,27 @@ class HiveOperations:
         except Exception as exp:
             raise Exception(exp)
 
-    def create_hive_table(self):
+    def create_hive_table(self, table_keys_type):
         """
         Creates a table in hive database
         Raises:
             Exception:
                 If any issue when creating table
         """
+        data_type_map = {'int': "int",
+                         'str': "string",
+                         'float': "double"
+                         }
+        table_struct = ""
+        for key, data_type in table_keys_type.items():
+            table_struct += "{0} {1}, ".format(key, data_type_map[data_type])
+        table_struct = table_struct[:-2]
         try:
             print("\nCreating Table:\n")
-            cmd = "use {0};create table {1}(year INT, quarter INT, revenue DOUBLE,seats INT) " \
-                  "row format delimited fields terminated by \",\" stored as textfile".format(self.database, self.table_name)
+            cmd = "use {0};create table {1}({2}) " \
+                  "row format delimited fields terminated by \",\" stored as textfile".format(self.database,
+                                                                                              self.table_name,
+                                                                                              table_struct)
 
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
@@ -82,7 +92,6 @@ class HiveOperations:
                 raise Exception("Failed to create table")
         except Exception as exp:
             raise Exception(exp)
-
 
     def insert_data_to_table_from_file(self, filepath):
         """
@@ -95,13 +104,21 @@ class HiveOperations:
         """
         try:
             print("\nLoading data to file\n")
-            cmd = "use {0};load data INPATH '{0}' INTO TABLE {1}\";".format(filepath, self.table_name)
+            cmd = "use {0};load data INPATH '{0}' INTO TABLE {1}".format(filepath, self.table_name)
 
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
                 print(str(out).lower())
                 raise Exception("Failed to create table")
+
+            cmd = 'use {0};alter table {1} set tblproperties("skip.header.line.count"="1");'.format(self.database,
+                                                                                                    self.table_name)
+
+            put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            print(str(out).lower())
+
         except Exception as exp:
             raise Exception(exp)
 
@@ -116,12 +133,13 @@ class HiveOperations:
             Exception:
                 If any issue when performing select operation
         """
-        query = "select * from {0} where name like '%{1}' or name like '%{2}'".format(self.table_name,
-                                                                                      first_letter,
-                                                                                      first_letter.upper())
+        query = "use {0};select * from {1} where name like '%{2}' or name like '%{3}'".format(self.database,
+                                                                                              self.table_name,
+                                                                                              first_letter,
+                                                                                              first_letter.upper())
 
         try:
-            put = Popen([self.base_cmd, query], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            put = Popen(["hive", "-S", "-e", query], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
                 print(str(out).lower())

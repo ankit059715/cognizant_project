@@ -124,11 +124,11 @@ class DataGenerator:
             for i in range(0, self.number_data):
                 dictionary_data = {'Name': self.__return_name(),
                                    'Id': self.__return_id(),
-                                   'Phone Number': self.__return_phone_number(),
+                                   'Phone_Number': self.__return_phone_number(),
                                    'Address': self.__return_address(),
-                                   'Pin Code': self.__return_pin(),
+                                   'Pin_Code': self.__return_pin(),
                                    'Email': None,
-                                   'Date of Birth': self.__return_dob()
+                                   'DOB': self.__return_dob()
                                    }
 
                 dictionary_data["Email"] = self.__return_email(dictionary_data["Name"],
@@ -140,3 +140,14 @@ class DataGenerator:
 
         except Exception as exp:
             raise Exception(exp)
+
+    @property
+    def get_keys(self):
+        return self.data[0].keys()
+
+    def data_type_key(self, key):
+        if key in self.data[0].keys():
+            return str(type(self.data[0][key])).split("'")[1]
+        else:
+            raise Exception("Given key does not exist!")
+
