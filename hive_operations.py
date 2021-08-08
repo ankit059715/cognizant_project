@@ -1,42 +1,82 @@
-from pyhive import hive
+from subprocess import PIPE, Popen
 
 
 class HiveOperations:
-    def __init__(self, hostname, port, user, password, database):
-        self.hostname = hostname
-        self.port = port
-        self.user = user
-        self.password = password
+    def __init__(self, database, table_name):
         self.database = database
-        self.conn = None
-        self.cur = None
-        self.table_name = None
+        self.table_name = table_name
+        self.base_cmd = "hive -S -e \"use {0};".format(self.database)
 
-    def connect_hive_db(self):
+    @staticmethod
+    def hive_output_formatter(message):
         """
-        Connects to Hive database
+        Returns Formatted Output message
+        Args:
+            message(str) ---> Output message
+        Returns:
+            str -> Formatted Message
+        """
+        index = message.find("warn")
+        return message[:index]
+
+    def is_database_exist(self):
+        try:
+            put = Popen(["hive", "-S", "-e", "show databases"], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, err = put.communicate()
+            out = self.hive_output_formatter(str(out).lower())
+            if self.database.lower() in out:
+                return True
+            return False
+        except Exception as exp:
+            raise Exception(exp)
+
+    def drop_hive_database(self):
+        try:
+            put = Popen(["hive", "-S", "-e", "drop", "database", self.database], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                raise Exception("Failed to delete database")
+        except Exception as exp:
+            raise Exception(exp)
+
+    def create_hive_database(self):
+        """
+        Creates Hive database
         Raises:
             Exception:
                 If any problem while connecting to Hive Database
         """
-        self.conn = hive.Connection(host=self.hostname,
-                                    port=self.port,
-                                    username=self.user,
-                                    password=self.password,
-                                    database=self.database,
-                                    auth='CUSTOM')
-        self.cur = self.conn.cursor()
+        try:
+            if self.is_database_exist():
+                self.drop_hive_database()
+            put = Popen(["hive", "-S", "-e", "'create", "database", self.database, "'"],
+                        stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                print(str(out).lower())
+                raise Exception("Failed to create database")
+        except Exception as exp:
+            raise Exception(exp)
 
-    def create_hive_table(self, table_name):
+    def create_hive_table(self):
         """
         Creates a table in hive database
-        Args:
-            table_name(str) ---> Name of table to create
         Raises:
             Exception:
                 If any issue when creating table
         """
-        self.table_name = table_name
+        try:
+            cmd = "create table {0}(year INT, quarter INT, revenue DOUBLE,seats INT) " \
+                  "row format delimited fields terminated by ',' stored as textfile\";".format(self.table_name)
+
+            put = Popen([self.base_cmd, cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                print(str(out).lower())
+                raise Exception("Failed to create table")
+        except Exception as exp:
+            raise Exception(exp)
+
 
     def insert_data_to_table_from_file(self, filepath):
         """
@@ -47,7 +87,16 @@ class HiveOperations:
             Exception:
                 If any issue when loading data from file
         """
-        pass
+        try:
+            cmd = "load data INPATH '{0}' INTO TABLE {1}\";".format(filepath, self.table_name)
+
+            put = Popen([self.base_cmd, cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                print(str(out).lower())
+                raise Exception("Failed to create table")
+        except Exception as exp:
+            raise Exception(exp)
 
     def get_data_from_hive_with_first_letter(self, first_letter="a"):
         """
@@ -60,13 +109,19 @@ class HiveOperations:
             Exception:
                 If any issue when performing select operation
         """
-        query = 'select * from {0} where name like "%{1}" or name like "%{2}"'.format(self.table_name,
+        query = "select * from {0} where name like '%{1}' or name like '%{2}'".format(self.table_name,
                                                                                       first_letter,
                                                                                       first_letter.upper())
-        self.cur.execute(query)
-        result = self.cur.fetchall()
-        return result
 
-    def close_connections(self):
-        self.cur.close()
-        self.conn.close()
+        try:
+            put = Popen([self.base_cmd, query], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                print(str(out).lower())
+                raise Exception("Failed to create table")
+            message = self.hive_output_formatter(str(out))
+            print(message)
+            print("\n-----------------------------------------------------------\n")
+            return message
+        except Exception as exp:
+            raise Exception(exp)
