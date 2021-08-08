@@ -49,7 +49,9 @@ class DataGenerator:
          Returns:
                 str -> random address
         """
-        return self.faker.address()
+        cities = ['delhi', 'kolkata', 'bangalore', 'mysore', 'chandigarh', 'pune', 'chennai', 'hyderabad',
+                  'ahmedabad', 'gurgaon', 'lucknow']
+        return cities[random.randint(0, len(cities)-1)]
 
     @staticmethod
     def __return_pin() -> str:

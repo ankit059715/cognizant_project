@@ -15,7 +15,7 @@ class HiveOperations:
         Returns:
             str -> Formatted Message
         """
-        index = message.find("warn")
+        index = message.lower().find("warn")
         return message[:index]
 
     def is_database_exist(self):
@@ -23,7 +23,7 @@ class HiveOperations:
             print("\nChecking database exist:\n")
             put = Popen(["hive", "-S", "-e", "show databases;"], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, err = put.communicate()
-            out = self.hive_output_formatter(str(out).lower())
+            out = self.hive_output_formatter(str(out))
             print(out)
             if self.database.lower() in out:
                 return True
@@ -34,6 +34,9 @@ class HiveOperations:
     def drop_hive_database(self):
         try:
             print("\nDropping database\n")
+            if self.is_table_exist():
+                print("Exists")
+                self.drop_hive_table()
             put = Popen(["hive", "-S", "-e", "drop database {0};".format(self.database)], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
@@ -70,7 +73,7 @@ class HiveOperations:
             Exception:
                 If any issue when creating table
         """
-        data_type_map = {'int': "int",
+        data_type_map = {'int': "bigint",
                          'str': "string",
                          'float': "double"
                          }
@@ -80,6 +83,10 @@ class HiveOperations:
         table_struct = table_struct[:-2]
         try:
             print("\nCreating Table:\n")
+            if self.is_table_exist():
+                print("Exists")
+                self.drop_hive_table()
+
             cmd = "use {0};create table {1}({2}) " \
                   "row format delimited fields terminated by \",\" stored as textfile".format(self.database,
                                                                                               self.table_name,
@@ -104,7 +111,7 @@ class HiveOperations:
         """
         try:
             print("\nLoading data to file\n")
-            cmd = "use {0};load data INPATH '{0}' INTO TABLE {1}".format(filepath, self.table_name)
+            cmd = "use {0};load data INPATH \"{1}\" INTO TABLE {2}".format(self.database, filepath, self.table_name)
 
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
@@ -122,7 +129,32 @@ class HiveOperations:
         except Exception as exp:
             raise Exception(exp)
 
-    def get_data_from_hive_with_first_letter(self, first_letter="a"):
+    def is_table_exist(self):
+        try:
+            cmd = 'use {0};show tables;'.format(self.database)
+            print("\nChecking table exist:\n")
+            put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, err = put.communicate()
+            out = self.hive_output_formatter(str(out))
+            print(out)
+            if self.table_name.lower() in out:
+                return True
+            return False
+        except Exception as exp:
+            raise Exception(exp)
+
+    def drop_hive_table(self):
+        try:
+            cmd = 'use {0};drop table {1};'.format(self.database,self.table_name)
+            print("\nDropping Table\n")
+            put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                raise Exception("Failed to delete Table")
+        except Exception as exp:
+            raise Exception(exp)
+
+    def get_data_from_hive_with_first_letter(self, first_letter):
         """
         Get all data beginning with given character
         Args:
@@ -133,10 +165,14 @@ class HiveOperations:
             Exception:
                 If any issue when performing select operation
         """
-        query = "use {0};select * from {1} where name like '%{2}' or name like '%{3}'".format(self.database,
+        query = "use {0};select * from {1} where name like '{2}%' or name like '{3}%'".format(self.database,
                                                                                               self.table_name,
                                                                                               first_letter,
                                                                                               first_letter.upper())
+        not_query = "use {0};select * from {1} where name not like '{2}%' or name not like '{3}%'".format(self.database,
+                                                                                                          self.table_name,
+                                                                                                          first_letter,
+                                                                                                          first_letter.upper())
 
         try:
             put = Popen(["hive", "-S", "-e", query], stdin=PIPE, stdout=PIPE, bufsize=-1)
@@ -147,6 +183,14 @@ class HiveOperations:
             message = self.hive_output_formatter(str(out))
             print(message)
             print("\n-----------------------------------------------------------\n")
-            return message
+            put = Popen(["hive", "-S", "-e", not_query], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            out, exp = put.communicate()
+            if "failed" in str(out).lower():
+                print(str(out).lower())
+                raise Exception("Failed to create table")
+            message2 = self.hive_output_formatter(str(out))
+            print(message2)
+            print("\n-----------------------------------------------------------\n")
+            return (message, message2)
         except Exception as exp:
             raise Exception(exp)

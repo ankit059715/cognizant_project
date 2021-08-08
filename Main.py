@@ -2,6 +2,7 @@ from data_generator import DataGenerator
 from hadoop_operations import HadoopOperations
 from hive_operations import HiveOperations
 import os
+import csv
 
 
 class Main:
@@ -59,29 +60,32 @@ class Main:
         self.hive_operations.create_hive_table(table_keys_type=key_type)
         self.hive_operations.insert_data_to_table_from_file(filepath=self.hdfs_path)
 
-    @staticmethod
-    def save_data(data, destination_file):
+    def save_data(self, data, destination_file):
+        keys = self.data_generator.get_keys
         with open(destination_file, 'w', newline='') as output_file:
-            output_file.writelines(data)
+            dict_writer = csv.DictWriter(output_file, keys)
+            dict_writer.writeheader()
+            dict_writer.writerows(data)
 
     def get_data_from_hive(self):
         print("\nGetting data from hive:\n")
 
-        for i in range(0, 2):
-            data = self.hive_operations.get_data_from_hive_with_first_letter(first_letter=chr(ord('a')+i))
-            self.save_data(data=data,
-                           destination_file=chr(ord('a')+i)+".txt")
+        data_with_char, data_rest = self.hive_operations.get_data_from_hive_with_first_letter(first_letter='v')
+        data_with_char = data_with_char.replace('\t',",")
+        data_rest = data_rest.replace('\t',",")
+        self.save_data(data=data_with_char,destination_file="v.csv")
+        self.save_data(data=data_rest,destination_file="not_v.csv")
 
 
 if __name__ == "__main__":
     main = Main()
     main.generate_data_to_file()
 
-    # main.delete_directory()
-    # main.upload_file()
-    # main.hive_create_db()
-    main.create_table_with_data()
-    # main.get_data_from_hive()
+    #main.delete_directory()
+    #main.upload_file()
+    #main.hive_create_db()
+    #main.create_table_with_data()
+    main.get_data_from_hive()
 
     # Phone number special character validation
     # pin special character validation
