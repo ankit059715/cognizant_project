@@ -5,7 +5,6 @@ class HiveOperations:
     def __init__(self, database, table_name):
         self.database = database
         self.table_name = table_name
-        self.base_cmd = "hive -S -e \"use {0};".format(self.database)
 
     @staticmethod
     def hive_output_formatter(message):
@@ -21,9 +20,11 @@ class HiveOperations:
 
     def is_database_exist(self):
         try:
-            put = Popen(["hive", "-S", "-e", "show databases"], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            print("\nChecking database exist:\n")
+            put = Popen(["hive", "-S", "-e", "show databases;"], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, err = put.communicate()
             out = self.hive_output_formatter(str(out).lower())
+            print(out)
             if self.database.lower() in out:
                 return True
             return False
@@ -32,7 +33,8 @@ class HiveOperations:
 
     def drop_hive_database(self):
         try:
-            put = Popen(["hive", "-S", "-e", "drop", "database", self.database], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            print("\nDropping database\n")
+            put = Popen(["hive", "-S", "-e", "drop database {0};".format(self.database)], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
                 raise Exception("Failed to delete database")
@@ -47,10 +49,13 @@ class HiveOperations:
                 If any problem while connecting to Hive Database
         """
         try:
+            print("\nCreating database :\n")
             if self.is_database_exist():
+                print("Exists")
                 self.drop_hive_database()
-            put = Popen(["hive", "-S", "-e", "'create", "database", self.database, "'"],
-                        stdin=PIPE, stdout=PIPE, bufsize=-1)
+            else:
+                print("Not Exists")
+            put = Popen(["hive", "-S", "-e", "create database {0};".format(self.database)], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
                 print(str(out).lower())
@@ -66,10 +71,11 @@ class HiveOperations:
                 If any issue when creating table
         """
         try:
-            cmd = "create table {0}(year INT, quarter INT, revenue DOUBLE,seats INT) " \
-                  "row format delimited fields terminated by ',' stored as textfile\";".format(self.table_name)
+            print("\nCreating Table:\n")
+            cmd = "use {0};create table {1}(year INT, quarter INT, revenue DOUBLE,seats INT) " \
+                  "row format delimited fields terminated by \",\" stored as textfile".format(self.database, self.table_name)
 
-            put = Popen([self.base_cmd, cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
                 print(str(out).lower())
@@ -88,9 +94,10 @@ class HiveOperations:
                 If any issue when loading data from file
         """
         try:
-            cmd = "load data INPATH '{0}' INTO TABLE {1}\";".format(filepath, self.table_name)
+            print("\nLoading data to file\n")
+            cmd = "use {0};load data INPATH '{0}' INTO TABLE {1}\";".format(filepath, self.table_name)
 
-            put = Popen([self.base_cmd, cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
+            put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
                 print(str(out).lower())
