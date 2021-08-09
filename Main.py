@@ -1,6 +1,7 @@
 from data_generator import DataGenerator
 from hadoop_operations import HadoopOperations
 from hive_operations import HiveOperations
+from data_validator import DataValidator
 import os
 import csv
 
@@ -10,6 +11,7 @@ class Main:
         self.__filepath = None
         self.hdfs_path = None
         self.data_generator = DataGenerator()
+        self.data_validator = None
         self.hadoop_operations = HadoopOperations()
         self.hive_operations = HiveOperations(database="project_db",
                                               table_name="test_table")
@@ -24,6 +26,11 @@ class Main:
         print("\nGenerate data\n")
         self.__filepath = os.path.join(os.getcwd(), filename)
         self.data_generator.generate_data(filename=self.__filepath)
+
+    def validate_data(self):
+        print("\nValidate data\n")
+        self.data_validator = DataValidator(filename=self.__filepath)
+        self.__filepath = self.data_validator.validate_data_main()
 
     def upload_file(self):
         """
@@ -64,7 +71,7 @@ class Main:
         keys = self.data_generator.get_keys
         data = [data_row.split(',') for data_row in data]
         with open(destination_file, 'w', newline='') as output_file:
-            writer = csv.writer(output_file, delimiter = ",")
+            writer = csv.writer(output_file, delimiter=",")
             writer.writerows([keys])
             writer.writerows(data)
 
@@ -72,25 +79,25 @@ class Main:
         print("\nGetting data from hive:\n")
 
         data_with_char, data_rest = self.hive_operations.get_data_from_hive_with_first_letter(first_letter='v')
-        data_with_char = data_with_char.replace('\t',",").strip().split("\n")
-        data_rest = data_rest.replace('\t',",").strip().split("\n")
+        data_with_char = data_with_char.replace('\t', ",").strip().split("\n")
+        data_rest = data_rest.replace('\t', ",").strip().split("\n")
         
-        self.save_data(data=data_with_char,destination_file="v.csv")
-        self.save_data(data=data_rest,destination_file="not_v.csv")
+        self.save_data(data=data_with_char, destination_file="v.csv")
+        self.save_data(data=data_rest, destination_file="not_v.csv")
 
 
 if __name__ == "__main__":
     main = Main()
     main.generate_data_to_file()
-
-    #main.delete_directory()
-    #main.upload_file()
-    #main.hive_create_db()
-    #main.create_table_with_data()
-    main.get_data_from_hive()
+    main.validate_data()
+    # main.delete_directory()
+    main.upload_file()
+    # main.hive_create_db()
+    # main.create_table_with_data()
+    # main.get_data_from_hive()
 
     # Phone number special character validation
     # pin special character validation
     # email -> @ must be in it
     #
-    #main.delete_directory()
+    # main.delete_directory()
