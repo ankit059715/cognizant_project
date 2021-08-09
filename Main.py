@@ -62,17 +62,19 @@ class Main:
 
     def save_data(self, data, destination_file):
         keys = self.data_generator.get_keys
+        data = [data_row.split(',') for data_row in data]
         with open(destination_file, 'w', newline='') as output_file:
-            dict_writer = csv.DictWriter(output_file, keys)
-            dict_writer.writeheader()
-            dict_writer.writerows(data)
+            writer = csv.writer(output_file, delimiter = ",")
+            writer.writerows([keys])
+            writer.writerows(data)
 
     def get_data_from_hive(self):
         print("\nGetting data from hive:\n")
 
         data_with_char, data_rest = self.hive_operations.get_data_from_hive_with_first_letter(first_letter='v')
-        data_with_char = data_with_char.replace('\t',",")
-        data_rest = data_rest.replace('\t',",")
+        data_with_char = data_with_char.replace('\t',",").strip().split("\n")
+        data_rest = data_rest.replace('\t',",").strip().split("\n")
+        
         self.save_data(data=data_with_char,destination_file="v.csv")
         self.save_data(data=data_rest,destination_file="not_v.csv")
 

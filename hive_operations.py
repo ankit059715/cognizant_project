@@ -24,7 +24,7 @@ class HiveOperations:
             put = Popen(["hive", "-S", "-e", "show databases;"], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, err = put.communicate()
             out = self.hive_output_formatter(str(out))
-            print(out)
+            
             if self.database.lower() in out:
                 return True
             return False
@@ -61,7 +61,6 @@ class HiveOperations:
             put = Popen(["hive", "-S", "-e", "create database {0};".format(self.database)], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
-                print(str(out).lower())
                 raise Exception("Failed to create database")
         except Exception as exp:
             raise Exception(exp)
@@ -95,7 +94,6 @@ class HiveOperations:
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
-                print(str(out).lower())
                 raise Exception("Failed to create table")
         except Exception as exp:
             raise Exception(exp)
@@ -116,7 +114,6 @@ class HiveOperations:
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
-                print(str(out).lower())
                 raise Exception("Failed to create table")
 
             cmd = 'use {0};alter table {1} set tblproperties("skip.header.line.count"="1");'.format(self.database,
@@ -124,7 +121,6 @@ class HiveOperations:
 
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
-            print(str(out).lower())
 
         except Exception as exp:
             raise Exception(exp)
@@ -136,7 +132,7 @@ class HiveOperations:
             put = Popen(["hive", "-S", "-e", cmd], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, err = put.communicate()
             out = self.hive_output_formatter(str(out))
-            print(out)
+            
             if self.table_name.lower() in out:
                 return True
             return False
@@ -178,19 +174,15 @@ class HiveOperations:
             put = Popen(["hive", "-S", "-e", query], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
-                print(str(out).lower())
                 raise Exception("Failed to create table")
-            message = self.hive_output_formatter(str(out))
-            print(message)
-            print("\n-----------------------------------------------------------\n")
+            message = self.hive_output_formatter(out.decode("utf-8"))
+            
             put = Popen(["hive", "-S", "-e", not_query], stdin=PIPE, stdout=PIPE, bufsize=-1)
             out, exp = put.communicate()
             if "failed" in str(out).lower():
-                print(str(out).lower())
                 raise Exception("Failed to create table")
-            message2 = self.hive_output_formatter(str(out))
-            print(message2)
-            print("\n-----------------------------------------------------------\n")
+            message2 = self.hive_output_formatter(out.decode("utf-8"))
+            
             return (message, message2)
         except Exception as exp:
             raise Exception(exp)
