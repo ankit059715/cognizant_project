@@ -19,24 +19,29 @@ class DataValidator:
                 self.complete_data.append(row)
         self.keys = self.complete_data[0]
         self.complete_data = self.complete_data[1:]
+        self.logger.info("Successfully read data")
 
     def validate_numerical_data(self, index):
+        self.logger.info("Validating numerical data of column %s" % self.keys[index])
         for ind in range(0, len(self.complete_data)):
             if not self.complete_data[ind][index].isnumeric():
                 self.error_index.add(ind)
 
     def validate_email(self, index):
+        self.logger.info("Validating email_id of column %s" % self.keys[index])
         self.validate_space(index)
         for ind in range(0, len(self.complete_data)):
             if "@" not in self.complete_data[ind][index]:
                 self.error_index.add(ind)
 
     def validate_space(self, index):
+        self.logger.info("Validating spaces in entries of column %s" % self.keys[index])
         for ind in range(0, len(self.complete_data)):
             if " " in str(self.complete_data[ind][index]):
                 self.error_index.add(ind)
 
     def finalize_data(self):
+        self.logger.info("Creation of final dataset")
         for ind in range(0, len(self.complete_data)):
             if ind in self.error_index:
                 self.error_data.append(self.complete_data[ind])
@@ -44,7 +49,9 @@ class DataValidator:
                 self.final_data.append(self.complete_data[ind])
 
     def write_validated_data(self):
+        self.logger.info("Writing data to final_data file")
         final_data_file = os.path.join(os.path.dirname(self.filename), "final_data.csv")
+        self.logger.info("Writing data to error file")
         error_data_file = os.path.join(os.path.dirname(self.filename), "error_data.csv")
         with open(final_data_file, 'w', newline='') as output_file:
             writer = csv.writer(output_file, delimiter=",")
@@ -72,8 +79,14 @@ class DataValidator:
         self.validate_space(self.keys.index("Id"))
 
         self.finalize_data()
-        final_data_file, _ = self.write_validated_data()
-        return final_data_file
+        final_data_file, error_file = self.write_validated_data()
+        return (final_data_file, error_file)
+
+    @property
+    def return_data_keys_from_file(self):
+        self.read_file_data()
+        return (self.keys, self.complete_data)
+
 
 
 

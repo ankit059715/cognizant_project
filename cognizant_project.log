@@ -1,83 +1,114 @@
-2021-08-10 14:17:20,468 - [INFO] - __main__ - (Main.py).generate_data_to_file(29) - Starting Generate Data Function
-2021-08-10 14:17:20,470 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
-2021-08-10 14:17:20,483 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
-2021-08-10 14:17:20,495 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
-2021-08-10 14:17:20,508 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
-2021-08-10 14:17:20,521 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
-2021-08-10 14:17:20,536 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
-2021-08-10 14:17:20,561 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
-2021-08-10 14:17:20,577 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
-2021-08-10 14:17:20,591 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
-2021-08-10 14:17:20,604 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
-2021-08-10 14:17:20,626 - [INFO] - __main__ - (Main.py).generate_data_to_file(32) - Generate Data Function Complete
-2021-08-10 14:17:20,626 - [INFO] - __main__ - (Main.py).validate_data(36) - Starting Validate Data Function
-2021-08-10 14:17:20,627 - [INFO] - data_validator - (data_validator.py).validate_data_main(60) - Reading File Data
-2021-08-10 14:17:20,630 - [INFO] - data_validator - (data_validator.py).validate_data_main(63) - Validating Pin Code
-2021-08-10 14:17:20,637 - [INFO] - __main__ - (Main.py).validate_data(39) - Data Validation Complete
-2021-08-10 14:28:05,994 - [INFO] - __main__ - (Main.py).generate_data_to_file(27) - Starting Generate Data Function
-2021-08-10 14:28:05,994 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
-2021-08-10 14:28:06,009 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
-2021-08-10 14:28:06,022 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
-2021-08-10 14:28:06,036 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
-2021-08-10 14:28:06,050 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
-2021-08-10 14:28:06,063 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
-2021-08-10 14:28:06,079 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
-2021-08-10 14:28:06,091 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
-2021-08-10 14:28:06,104 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
-2021-08-10 14:28:06,117 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
-2021-08-10 14:28:06,137 - [INFO] - __main__ - (Main.py).generate_data_to_file(29) - Generate Data Function Complete
-2021-08-10 14:28:06,138 - [INFO] - __main__ - (Main.py).validate_data(33) - Starting Validate Data Function
-2021-08-10 14:28:06,138 - [INFO] - data_validator - (data_validator.py).validate_data_main(60) - Reading File Data
-2021-08-10 14:28:06,140 - [INFO] - data_validator - (data_validator.py).validate_data_main(63) - Validating Pin Code
-2021-08-10 14:28:06,148 - [INFO] - __main__ - (Main.py).validate_data(36) - Data Validation Complete
-2021-08-10 14:29:54,159 - [INFO] - __main__ - (Main.py).__init__(21) - -------------------------------New Execution---------------------------------
-2021-08-10 14:29:54,159 - [INFO] - __main__ - (Main.py).generate_data_to_file(28) - Starting Generate Data Function
-2021-08-10 14:29:54,160 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
-2021-08-10 14:29:54,173 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
-2021-08-10 14:29:54,185 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
-2021-08-10 14:29:54,199 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
-2021-08-10 14:29:54,213 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
-2021-08-10 14:29:54,225 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
-2021-08-10 14:29:54,238 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
-2021-08-10 14:29:54,252 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
-2021-08-10 14:29:54,264 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
-2021-08-10 14:29:54,279 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
-2021-08-10 14:29:54,298 - [INFO] - __main__ - (Main.py).generate_data_to_file(30) - Generate Data Function Complete
-2021-08-10 14:29:54,298 - [INFO] - __main__ - (Main.py).validate_data(34) - Starting Validate Data Function
-2021-08-10 14:29:54,299 - [INFO] - data_validator - (data_validator.py).validate_data_main(60) - Reading File Data
-2021-08-10 14:29:54,301 - [INFO] - data_validator - (data_validator.py).validate_data_main(63) - Validating Pin Code
-2021-08-10 14:29:54,307 - [INFO] - __main__ - (Main.py).validate_data(37) - Data Validation Complete
-2021-08-10 14:30:28,894 - [INFO] - __main__ - (Main.py).__init__(21) - -----------New Execution-----------
-2021-08-10 14:30:28,895 - [INFO] - __main__ - (Main.py).generate_data_to_file(28) - Starting Generate Data Function
-2021-08-10 14:30:28,895 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
-2021-08-10 14:30:28,908 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
-2021-08-10 14:30:28,922 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
-2021-08-10 14:30:28,934 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
-2021-08-10 14:30:28,948 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
-2021-08-10 14:30:28,963 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
-2021-08-10 14:30:28,975 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
-2021-08-10 14:30:28,988 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
-2021-08-10 14:30:29,001 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
-2021-08-10 14:30:29,027 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
-2021-08-10 14:30:29,047 - [INFO] - __main__ - (Main.py).generate_data_to_file(30) - Generate Data Function Complete
-2021-08-10 14:30:29,048 - [INFO] - __main__ - (Main.py).validate_data(34) - Starting Validate Data Function
-2021-08-10 14:30:29,048 - [INFO] - data_validator - (data_validator.py).validate_data_main(60) - Reading File Data
-2021-08-10 14:30:29,051 - [INFO] - data_validator - (data_validator.py).validate_data_main(63) - Validating Pin Code
-2021-08-10 14:30:29,056 - [INFO] - __main__ - (Main.py).validate_data(37) - Data Validation Complete
-2021-08-10 14:30:45,359 - [INFO] - __main__ - (Main.py).__init__(21) - ---------------New Execution---------------
-2021-08-10 14:30:45,360 - [INFO] - __main__ - (Main.py).generate_data_to_file(28) - Starting Generate Data Function
-2021-08-10 14:30:45,360 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
-2021-08-10 14:30:45,374 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
-2021-08-10 14:30:45,386 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
-2021-08-10 14:30:45,401 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
-2021-08-10 14:30:45,414 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
-2021-08-10 14:30:45,428 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
-2021-08-10 14:30:45,442 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
-2021-08-10 14:30:45,455 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
-2021-08-10 14:30:45,468 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
-2021-08-10 14:30:45,486 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
-2021-08-10 14:30:45,504 - [INFO] - __main__ - (Main.py).generate_data_to_file(30) - Generate Data Function Complete
-2021-08-10 14:30:45,504 - [INFO] - __main__ - (Main.py).validate_data(34) - Starting Validate Data Function
-2021-08-10 14:30:45,505 - [INFO] - data_validator - (data_validator.py).validate_data_main(60) - Reading File Data
-2021-08-10 14:30:45,507 - [INFO] - data_validator - (data_validator.py).validate_data_main(63) - Validating Pin Code
-2021-08-10 14:30:45,516 - [INFO] - __main__ - (Main.py).validate_data(37) - Data Validation Complete
+2021-08-10 08:10:33,998 - [INFO] - __main__ - (Main.py).__init__(21) - ---------------New Execution---------------
+2021-08-10 08:10:33,998 - [INFO] - __main__ - (Main.py).generate_data_to_file(28) - Starting Generate Data Function
+2021-08-10 08:10:33,999 - [INFO] - data_generator - (data_generator.py).generate_data(125) - Generating complete rows of data
+2021-08-10 08:10:33,999 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
+2021-08-10 08:10:34,031 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
+2021-08-10 08:10:34,069 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
+2021-08-10 08:10:34,121 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
+2021-08-10 08:10:34,172 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
+2021-08-10 08:10:34,209 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
+2021-08-10 08:10:34,242 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
+2021-08-10 08:10:34,282 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
+2021-08-10 08:10:34,318 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
+2021-08-10 08:10:34,357 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
+2021-08-10 08:10:34,403 - [INFO] - data_generator - (data_generator.py).__save_data_to_file(107) - Saving data to file
+2021-08-10 08:10:34,421 - [INFO] - __main__ - (Main.py).generate_data_to_file(30) - Generate Data Function Complete
+2021-08-10 08:10:34,421 - [INFO] - __main__ - (Main.py).validate_data(34) - Starting Validate Data Function
+2021-08-10 08:10:34,421 - [INFO] - data_validator - (data_validator.py).validate_data_main(67) - Reading File Data
+2021-08-10 08:10:34,427 - [INFO] - data_validator - (data_validator.py).read_file_data(22) - Successfully read data
+2021-08-10 08:10:34,428 - [INFO] - data_validator - (data_validator.py).validate_data_main(70) - Validating Pin Code
+2021-08-10 08:10:34,428 - [INFO] - data_validator - (data_validator.py).validate_numerical_data(25) - Validating numerical data of column Pin_Code
+2021-08-10 08:10:34,428 - [INFO] - data_validator - (data_validator.py).validate_numerical_data(25) - Validating numerical data of column Phone_Number
+2021-08-10 08:10:34,428 - [INFO] - data_validator - (data_validator.py).validate_email(31) - Validating email_id of column Email
+2021-08-10 08:10:34,428 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Email
+2021-08-10 08:10:34,429 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Phone_Number
+2021-08-10 08:10:34,431 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Pin_Code
+2021-08-10 08:10:34,434 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Id
+2021-08-10 08:10:34,434 - [INFO] - data_validator - (data_validator.py).finalize_data(44) - Creation of final dataset
+2021-08-10 08:10:34,434 - [INFO] - data_validator - (data_validator.py).write_validated_data(52) - Writing data to final_data file
+2021-08-10 08:10:34,434 - [INFO] - data_validator - (data_validator.py).write_validated_data(54) - Writing data to error file
+2021-08-10 08:10:34,441 - [INFO] - __main__ - (Main.py).validate_data(37) - Data Validation Complete
+2021-08-10 08:11:00,836 - [INFO] - __main__ - (Main.py).__init__(21) - ---------------New Execution---------------
+2021-08-10 08:14:13,275 - [INFO] - __main__ - (Main.py).__init__(21) - ---------------New Execution---------------
+2021-08-10 08:14:13,275 - [INFO] - __main__ - (Main.py).generate_data_to_file(28) - Starting Generate Data Function
+2021-08-10 08:14:13,276 - [INFO] - data_generator - (data_generator.py).generate_data(125) - Generating complete rows of data
+2021-08-10 08:14:13,277 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
+2021-08-10 08:14:13,319 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
+2021-08-10 08:14:13,360 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
+2021-08-10 08:14:13,426 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
+2021-08-10 08:14:13,464 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
+2021-08-10 08:14:13,521 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
+2021-08-10 08:14:13,562 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
+2021-08-10 08:14:13,612 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
+2021-08-10 08:14:13,657 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
+2021-08-10 08:14:13,711 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
+2021-08-10 08:14:13,759 - [INFO] - data_generator - (data_generator.py).__save_data_to_file(107) - Saving data to file
+2021-08-10 08:14:13,765 - [INFO] - __main__ - (Main.py).generate_data_to_file(30) - Generate Data Function Complete
+2021-08-10 08:14:13,766 - [INFO] - __main__ - (Main.py).validate_data(34) - Starting Validate Data Function
+2021-08-10 08:14:13,766 - [INFO] - data_validator - (data_validator.py).validate_data_main(67) - Reading File Data
+2021-08-10 08:14:13,772 - [INFO] - data_validator - (data_validator.py).read_file_data(22) - Successfully read data
+2021-08-10 08:14:13,772 - [INFO] - data_validator - (data_validator.py).validate_data_main(70) - Validating Pin Code
+2021-08-10 08:14:13,772 - [INFO] - data_validator - (data_validator.py).validate_numerical_data(25) - Validating numerical data of column Pin_Code
+2021-08-10 08:14:13,773 - [INFO] - data_validator - (data_validator.py).validate_numerical_data(25) - Validating numerical data of column Phone_Number
+2021-08-10 08:14:13,773 - [INFO] - data_validator - (data_validator.py).validate_email(31) - Validating email_id of column Email
+2021-08-10 08:14:13,774 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Email
+2021-08-10 08:14:13,775 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Phone_Number
+2021-08-10 08:14:13,776 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Pin_Code
+2021-08-10 08:14:13,776 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Id
+2021-08-10 08:14:13,777 - [INFO] - data_validator - (data_validator.py).finalize_data(44) - Creation of final dataset
+2021-08-10 08:14:13,778 - [INFO] - data_validator - (data_validator.py).write_validated_data(52) - Writing data to final_data file
+2021-08-10 08:14:13,779 - [INFO] - data_validator - (data_validator.py).write_validated_data(54) - Writing data to error file
+2021-08-10 08:14:13,785 - [INFO] - __main__ - (Main.py).validate_data(37) - Data Validation Complete
+2021-08-10 08:14:13,785 - [INFO] - hadoop_operations - (hadoop_operations.py).is_directory_exist(40) - Checking if directory exist
+2021-08-10 08:14:19,878 - [INFO] - __main__ - (Main.py).delete_directory(55) - Deleting Existing Directory From Hadoop
+2021-08-10 08:14:19,878 - [INFO] - hadoop_operations - (hadoop_operations.py).delete_directory_hadoop(59) - Delete directory if exist
+2021-08-10 08:14:25,943 - [INFO] - __main__ - (Main.py).delete_directory(57) - Deleted Existing Directory From Hadoop
+2021-08-10 08:14:25,944 - [INFO] - __main__ - (Main.py).upload_file(44) - Starting File Upload to Hadoop
+2021-08-10 08:14:25,944 - [INFO] - hadoop_operations - (hadoop_operations.py).upload_file_hadoop(21) - Uploading final data to hadoop
+2021-08-10 08:14:38,178 - [INFO] - __main__ - (Main.py).upload_file(47) - File Upload to Hadoop completed
+2021-08-10 08:14:38,178 - [INFO] - __main__ - (Main.py).hive_create_db(63) - Creating Hive Database
+2021-08-10 08:14:38,178 - [INFO] - hive_operations - (hive_operations.py).create_hive_database(60) - Creating Database
+2021-08-10 08:14:38,178 - [INFO] - hive_operations - (hive_operations.py).is_database_exist(23) - Checking if database exist
+2021-08-10 08:14:59,108 - [INFO] - hive_operations - (hive_operations.py).hive_output_formatter(18) - Ignoring the warning
+2021-08-10 08:14:59,108 - [INFO] - hive_operations - (hive_operations.py).drop_hive_database(38) - Dropping Database
+2021-08-10 08:14:59,108 - [INFO] - hive_operations - (hive_operations.py).is_table_exist(144) - Checking if table exist
+2021-08-10 08:15:19,125 - [INFO] - hive_operations - (hive_operations.py).hive_output_formatter(18) - Ignoring the warning
+2021-08-10 08:15:19,126 - [INFO] - hive_operations - (hive_operations.py).drop_hive_table(160) - Dropping Hive Table
+2021-08-10 08:16:26,026 - [INFO] - __main__ - (Main.py).hive_create_db(65) - Successfully Created Hive Database
+2021-08-10 08:16:26,026 - [INFO] - hive_operations - (hive_operations.py).create_hive_table(84) - Creating Hive Table
+2021-08-10 08:16:26,026 - [INFO] - hive_operations - (hive_operations.py).is_table_exist(144) - Checking if table exist
+2021-08-10 08:16:45,579 - [INFO] - hive_operations - (hive_operations.py).hive_output_formatter(18) - Ignoring the warning
+2021-08-10 08:17:08,397 - [INFO] - hive_operations - (hive_operations.py).insert_data_to_table_from_file(122) - Inserting Data
+2021-08-10 08:17:53,690 - [INFO] - hive_operations - (hive_operations.py).get_data_from_hive_with_first_letter(184) - Performing operation of V and not_V
+2021-08-10 08:18:19,641 - [INFO] - hive_operations - (hive_operations.py).hive_output_formatter(18) - Ignoring the warning
+2021-08-10 08:18:47,433 - [INFO] - hive_operations - (hive_operations.py).hive_output_formatter(18) - Ignoring the warning
+2021-08-10 08:20:11,417 - [INFO] - __main__ - (Main.py).__init__(21) - ---------------New Execution---------------
+2021-08-10 08:20:11,417 - [INFO] - __main__ - (Main.py).generate_data_to_file(28) - Starting Generate Data Function
+2021-08-10 08:20:11,417 - [INFO] - data_generator - (data_generator.py).generate_data(125) - Generating complete rows of data
+2021-08-10 08:20:11,418 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
+2021-08-10 08:20:11,450 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
+2021-08-10 08:20:11,501 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
+2021-08-10 08:20:11,537 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
+2021-08-10 08:20:11,582 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
+2021-08-10 08:20:11,622 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
+2021-08-10 08:20:11,659 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
+2021-08-10 08:20:11,715 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
+2021-08-10 08:20:11,749 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
+2021-08-10 08:20:11,796 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
+2021-08-10 08:20:11,831 - [INFO] - data_generator - (data_generator.py).__save_data_to_file(107) - Saving data to file
+2021-08-10 08:20:11,843 - [INFO] - __main__ - (Main.py).generate_data_to_file(30) - Generate Data Function Complete
+2021-08-10 08:20:11,843 - [INFO] - __main__ - (Main.py).validate_data(34) - Starting Validate Data Function
+2021-08-10 08:20:11,844 - [INFO] - data_validator - (data_validator.py).validate_data_main(67) - Reading File Data
+2021-08-10 08:20:11,847 - [INFO] - data_validator - (data_validator.py).read_file_data(22) - Successfully read data
+2021-08-10 08:20:11,848 - [INFO] - data_validator - (data_validator.py).validate_data_main(70) - Validating Pin Code
+2021-08-10 08:20:11,848 - [INFO] - data_validator - (data_validator.py).validate_numerical_data(25) - Validating numerical data of column Pin_Code
+2021-08-10 08:20:11,850 - [INFO] - data_validator - (data_validator.py).validate_numerical_data(25) - Validating numerical data of column Phone_Number
+2021-08-10 08:20:11,851 - [INFO] - data_validator - (data_validator.py).validate_email(31) - Validating email_id of column Email
+2021-08-10 08:20:11,851 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Email
+2021-08-10 08:20:11,851 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Phone_Number
+2021-08-10 08:20:11,852 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Pin_Code
+2021-08-10 08:20:11,852 - [INFO] - data_validator - (data_validator.py).validate_space(38) - Validating spaces in entries of column Id
+2021-08-10 08:20:11,852 - [INFO] - data_validator - (data_validator.py).finalize_data(44) - Creation of final dataset
+2021-08-10 08:20:11,854 - [INFO] - data_validator - (data_validator.py).write_validated_data(52) - Writing data to final_data file
+2021-08-10 08:20:11,854 - [INFO] - data_validator - (data_validator.py).write_validated_data(54) - Writing data to error file
+2021-08-10 08:20:11,861 - [INFO] - __main__ - (Main.py).validate_data(37) - Data Validation Complete

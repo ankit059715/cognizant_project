@@ -1,11 +1,5 @@
-Hello! This is the Cognizant Project
+Hello! This is the Hive Data Handling Project
 
-TODO:
+To run:
 
--> Add comments to all functions
-
--> Modify data to list of dictionaries from get_hive_data
-
--> Adding Logger
-
--> Creating Validations
+Complete!!

@@ -1,2 +1,5 @@
-*.csv
+project_data.csv
+v.csv
+not_v.csv
+error.csv
 *.txt

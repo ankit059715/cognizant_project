@@ -21,8 +21,7 @@ class DataGenerator:
         """
         return self.faker.name()
 
-    @staticmethod
-    def __return_id() -> int:
+    def __return_id(self) -> int:
         """
          Generate random Id 
          Returns:
@@ -33,8 +32,7 @@ class DataGenerator:
             temp_id.append(str(random.randint(0, 9)))
         return int("".join(temp_id))
 
-    @staticmethod
-    def __return_phone_number() -> int:
+    def __return_phone_number(self) -> int:
         """
          Generate random Phone numbers 
          Returns:
@@ -51,12 +49,12 @@ class DataGenerator:
          Returns:
                 str -> random address
         """
+
         cities = ['delhi', 'kolkata', 'bangalore', 'mysore', 'chandigarh', 'pune', 'chennai', 'hyderabad',
                   'ahmedabad', 'gurgaon', 'lucknow']
         return cities[random.randint(0, len(cities)-1)]
 
-    @staticmethod
-    def __return_pin() -> str:
+    def __return_pin(self) -> str:
         """
          Generate random pincode
          Returns:
@@ -70,8 +68,7 @@ class DataGenerator:
             temp_pin[random.randint(0, 6)] = chr(random.randint(ord('a'), ord('z')))
         return "".join(temp_pin)
 
-    @staticmethod
-    def __return_email(name: str, id: int) -> str:
+    def __return_email(self, name: str, id: int) -> str:
         """
          Generate random email_id by appending name,id and domain together
          Args:
@@ -86,8 +83,7 @@ class DataGenerator:
         email = "{0}_{1}@{2}.com".format(name, str(id), domain[rnd_dmn])
         return email
 
-    @staticmethod
-    def __return_dob() -> str:
+    def __return_dob(self) -> str:
         """
          Generate random Date of Birth
          Returns:
@@ -108,6 +104,8 @@ class DataGenerator:
          Args:
              filename(str) ---> Filename with complete path to save data to.
         """
+        self.logger.info("Saving data to file")
+
         keys = self.data[0].keys()
         with open(filename, 'w', newline='') as output_file:
             dict_writer = csv.DictWriter(output_file, keys)
@@ -124,6 +122,8 @@ class DataGenerator:
             Exception:
                 Any issue with data creation or saving to file.
         """
+        self.logger.info("Generating complete rows of data")
+
         try:
             for i in range(0, self.number_data):
                 dictionary_data = {'Name': self.__return_name(),
@@ -140,7 +140,7 @@ class DataGenerator:
 
                 self.data.append(dictionary_data)
                 if i % 100 == 0:
-                    self.logger.info("Generated %s rows.!" % str(i))
+                    self.logger.info("Generated %s rows!" % str(i))
 
             self.__save_data_to_file(filename)
 
@@ -156,5 +156,6 @@ class DataGenerator:
         if key in self.data[0].keys():
             return str(type(self.data[0][key])).split("'")[1]
         else:
+            self.logger.error("Given key does not exist...")
             raise Exception("Given key does not exist!")
 
