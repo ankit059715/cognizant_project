@@ -5,11 +5,12 @@ from data_validator import DataValidator
 import app_logger
 import os
 import csv
+import argparse
 
 
 class Main:
-    def __init__(self):
-        self.__filepath = None
+    def __init__(self, filepath):
+        self.__filepath = filepath
         self.hdfs_path = None
         self.data_generator = DataGenerator()
         self.data_validator = None
@@ -17,17 +18,14 @@ class Main:
         self.hive_operations = HiveOperations(database="project_db",
                                               table_name="test_table")
         self.logger = app_logger.get_logger(__name__)
+        self.logger.info("---------------New Execution---------------")
 
-    def generate_data_to_file(self, filename="project_data.csv"):
+    def generate_data_to_file(self):
         """
         Generates Random Data for Given Amount and Writes to file
-        Args:
-             filename(str) ---> File to save data to.
-                - default: project_data.csv
         """
         print("\nGenerate data\n")
         self.logger.info("Starting Generate Data Function")
-        self.__filepath = os.path.join(os.getcwd(), filename)
         self.data_generator.generate_data(filename=self.__filepath)
         self.logger.info("Generate Data Function Complete")
 
@@ -99,9 +97,31 @@ class Main:
 
 
 if __name__ == "__main__":
-    main = Main()
-    main.generate_data_to_file()
-    main.validate_data()
+
+    my_parser = argparse.ArgumentParser(description='Cognizant Project',
+                                        epilog='Enjoy the program! :)',
+                                        formatter_class=argparse.RawTextHelpFormatter)
+
+    my_parser.add_argument('-f',
+                           '--filename',
+                           type=str,
+                           help='The path to read csv file from',
+                           required=False)
+    args = my_parser.parse_args()
+    file_given = False
+    try:
+        if args.filename is None or len(args.filename) == 0:
+            filename = os.path.join(os.getcwd(), "project_data.csv")
+        else:
+            filename = args.filename
+            file_given = True
+    except Exception as exp:
+        raise Exception(exp)
+
+    main = Main(filename)
+    if not file_given:
+        main.generate_data_to_file()
+        main.validate_data()
     # main.delete_directory()
     # main.upload_file()
     # main.hive_create_db()
