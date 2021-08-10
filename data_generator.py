@@ -2,6 +2,7 @@ import random
 from faker import Faker
 import datetime
 import csv
+import app_logger
 
 
 class DataGenerator:
@@ -10,6 +11,7 @@ class DataGenerator:
         self.number_data = number_data
         self.data = []
         self.faker = Faker()
+        self.logger = app_logger.get_logger(__name__)
 
     def __return_name(self) -> str:
         """
@@ -137,10 +139,13 @@ class DataGenerator:
                                                                dictionary_data["Id"])
 
                 self.data.append(dictionary_data)
+                if i % 100 == 0:
+                    self.logger.info("Generated %s rows.!" % str(i))
 
             self.__save_data_to_file(filename)
 
         except Exception as exp:
+            self.logger.error(exp)
             raise Exception(exp)
 
     @property

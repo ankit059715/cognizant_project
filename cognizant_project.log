@@ -1,0 +1,16 @@
+2021-08-10 14:17:20,468 - [INFO] - __main__ - (Main.py).generate_data_to_file(29) - Starting Generate Data Function
+2021-08-10 14:17:20,470 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 0 rows.!
+2021-08-10 14:17:20,483 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 100 rows.!
+2021-08-10 14:17:20,495 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 200 rows.!
+2021-08-10 14:17:20,508 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 300 rows.!
+2021-08-10 14:17:20,521 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 400 rows.!
+2021-08-10 14:17:20,536 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 500 rows.!
+2021-08-10 14:17:20,561 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 600 rows.!
+2021-08-10 14:17:20,577 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 700 rows.!
+2021-08-10 14:17:20,591 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 800 rows.!
+2021-08-10 14:17:20,604 - [INFO] - data_generator - (data_generator.py).generate_data(143) - Generated 900 rows.!
+2021-08-10 14:17:20,626 - [INFO] - __main__ - (Main.py).generate_data_to_file(32) - Generate Data Function Complete
+2021-08-10 14:17:20,626 - [INFO] - __main__ - (Main.py).validate_data(36) - Starting Validate Data Function
+2021-08-10 14:17:20,627 - [INFO] - data_validator - (data_validator.py).validate_data_main(60) - Reading File Data
+2021-08-10 14:17:20,630 - [INFO] - data_validator - (data_validator.py).validate_data_main(63) - Validating Pin Code
+2021-08-10 14:17:20,637 - [INFO] - __main__ - (Main.py).validate_data(39) - Data Validation Complete

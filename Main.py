@@ -2,6 +2,7 @@ from data_generator import DataGenerator
 from hadoop_operations import HadoopOperations
 from hive_operations import HiveOperations
 from data_validator import DataValidator
+import app_logger
 import os
 import csv
 
@@ -15,6 +16,7 @@ class Main:
         self.hadoop_operations = HadoopOperations()
         self.hive_operations = HiveOperations(database="project_db",
                                               table_name="test_table")
+        self.logger = app_logger.get_logger(__name__)
 
     def generate_data_to_file(self, filename="project_data.csv"):
         """
@@ -24,21 +26,27 @@ class Main:
                 - default: project_data.csv
         """
         print("\nGenerate data\n")
+        self.logger.info("Starting Generate Data Function")
         self.__filepath = os.path.join(os.getcwd(), filename)
         self.data_generator.generate_data(filename=self.__filepath)
+        self.logger.info("Generate Data Function Complete")
 
     def validate_data(self):
         print("\nValidate data\n")
+        self.logger.info("Starting Validate Data Function")
         self.data_validator = DataValidator(filename=self.__filepath)
         self.__filepath = self.data_validator.validate_data_main()
+        self.logger.info("Data Validation Complete")
 
     def upload_file(self):
         """
         Uploads file to hadoop file system
         """
         print("\nUpload directory to hadoop\n")
+        self.logger.info("Starting File Upload to Hadoop")
         self.hadoop_operations.upload_file_hadoop(filepath=self.__filepath)
         self.hdfs_path = self.hadoop_operations.hdfs_path
+        self.logger.info("File Upload to Hadoop completed")
 
     def delete_directory(self):
         """
@@ -46,13 +54,17 @@ class Main:
         """
         print("\nDelete directory from hadoop\n")
         if self.hadoop_operations.is_directory_exist():
+            self.logger.info("Deleting Existing Directory From Hadoop")
             self.hadoop_operations.delete_directory_hadoop()
+            self.logger.info("Deleted Existing Directory From Hadoop")
 
     def hive_create_db(self):
         """
         Create hive database
         """
+        self.logger.info("Creating Hive Database")
         self.hive_operations.create_hive_database()
+        self.logger.info("Successfully Created Hive Database")
 
     def create_table_with_data(self):
         """
@@ -91,7 +103,7 @@ if __name__ == "__main__":
     main.generate_data_to_file()
     main.validate_data()
     # main.delete_directory()
-    main.upload_file()
+    # main.upload_file()
     # main.hive_create_db()
     # main.create_table_with_data()
     # main.get_data_from_hive()

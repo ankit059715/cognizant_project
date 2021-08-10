@@ -1,6 +1,6 @@
 import csv
 import os
-
+import app_logger
 
 class DataValidator:
     def __init__(self, filename):
@@ -10,6 +10,7 @@ class DataValidator:
         self.error_index = set()
         self.error_data = []
         self.final_data = []
+        self.logger = app_logger.get_logger(__name__)
 
     def read_file_data(self):
         with open(self.filename) as csv_file:
@@ -56,8 +57,10 @@ class DataValidator:
         return (final_data_file, error_data_file)
 
     def validate_data_main(self):
+        self.logger.info("Reading File Data")
         self.read_file_data()
         # 1. Validating Number for Pin code
+        self.logger.info("Validating Pin Code")
         self.validate_numerical_data(self.keys.index("Pin_Code"))
         # 2. Validating Number for Phone Number
         self.validate_numerical_data(self.keys.index("Phone_Number"))
