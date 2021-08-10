@@ -2,4 +2,6 @@ project_data.csv
 v.csv
 not_v.csv
 error.csv
+error_data.csv
+final_data.csv
 *.txt
