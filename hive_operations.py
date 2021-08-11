@@ -19,6 +19,11 @@ class HiveOperations:
         return message[:index]
 
     def is_database_exist(self):
+        """
+        Check if database exist
+        
+        """
+        
         self.logger.info("Checking if database exist")
         try:
             print("\nChecking database exist:\n")
@@ -34,6 +39,12 @@ class HiveOperations:
             raise Exception(exp)
 
     def drop_hive_database(self):
+        """
+        Drop hive database if already exist
+        Raises:
+            Exception:
+                If any issue while deleting database
+        """
         self.logger.info("Dropping Database")
         try:
             print("\nDropping database\n")
@@ -140,6 +151,10 @@ class HiveOperations:
             raise Exception(exp)
 
     def is_table_exist(self):
+        """
+        Check if table exist
+        
+        """
         self.logger.info("Checking if table exist")
         try:
             table_cmd = 'use {0};show tables;'.format(self.database)
@@ -156,6 +171,12 @@ class HiveOperations:
             raise Exception(exp)
 
     def drop_hive_table(self):
+        """
+        Drop hive table if already exist
+        Raises:
+            Exception:
+                If any issue while deleting table
+        """
         self.logger.info("Dropping Hive Table")
         try:
             cmd = 'use {0};drop table {1};'.format(self.database,self.table_name)

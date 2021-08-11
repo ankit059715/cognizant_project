@@ -13,6 +13,10 @@ class DataValidator:
         self.logger = app_logger.get_logger(__name__)
 
     def read_file_data(self):
+        """
+        Reading data from file generated randomly
+        
+        """
         with open(self.filename) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
@@ -22,12 +26,22 @@ class DataValidator:
         self.logger.info("Successfully read data")
 
     def validate_numerical_data(self, index):
+       """
+         Validating numerical data like id,phone_no,pincode
+         Args:
+             index(int) --->index of error 
+       """
         self.logger.info("Validating numerical data of column %s" % self.keys[index])
         for ind in range(0, len(self.complete_data)):
             if not self.complete_data[ind][index].isnumeric():
                 self.error_index.add(ind)
 
     def validate_email(self, index):
+       """
+         Validating email for correct format
+         Args:
+             index(int) --->index of error 
+       """
         self.logger.info("Validating email_id of column %s" % self.keys[index])
         self.validate_space(index)
         for ind in range(0, len(self.complete_data)):
@@ -35,12 +49,20 @@ class DataValidator:
                 self.error_index.add(ind)
 
     def validate_space(self, index):
+      """
+         Validating Spaces in every column except name
+         Args:
+             index(int) --->index of error 
+       """
         self.logger.info("Validating spaces in entries of column %s" % self.keys[index])
         for ind in range(0, len(self.complete_data)):
             if " " in str(self.complete_data[ind][index]):
                 self.error_index.add(ind)
 
     def finalize_data(self):
+      """
+         Creation of final dataset 
+       """
         self.logger.info("Creation of final dataset")
         for ind in range(0, len(self.complete_data)):
             if ind in self.error_index:
@@ -49,6 +71,14 @@ class DataValidator:
                 self.final_data.append(self.complete_data[ind])
 
     def write_validated_data(self):
+      """
+         Writing data to two different files
+         Returns:
+                final_data_file ---->rows with correct data
+                error_data_file ----->rows with incorrect rows
+
+         
+       """
         self.logger.info("Writing data to final_data file")
         final_data_file = os.path.join(os.path.dirname(self.filename), "final_data.csv")
         self.logger.info("Writing data to error file")
